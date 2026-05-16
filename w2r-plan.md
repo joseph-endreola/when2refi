@@ -1,5 +1,5 @@
 # when2refi.com — Project Plan
-*Last updated: 2026-05-14*
+*Last updated: 2026-05-16*
 
 ---
 
@@ -18,23 +18,23 @@
 
 ## Phase 2: Data Model and Math
 
-- [ ] Define D1 schema: users, properties, goals, notification history
-- [ ] Define goal solver math for each goal type (backwards calculation)
-- [ ] Define product query structure (what gets sent to Nexa's system)
-- [ ] Define ROW calculation for investment properties
-- [ ] Define hold/sell analysis model
+- [x] Define D1 schema: users, properties, goals, notification history
+- [x] Define goal solver math for each goal type (backwards calculation)
+- [x] Define product query structure (what gets sent to Nexa's system)
+- [x] Define ROW calculation for investment properties
+- [x] Define hold/sell analysis model
 
 ---
 
 ## Phase 3: Foundation
 
-- [ ] Register when2refi.com on Cloudflare
-- [ ] Initialize React + Vite + Tailwind project
-- [ ] Deploy skeleton to Cloudflare Pages
-- [ ] Set up Cloudflare Workers (TypeScript)
-- [ ] Set up Cloudflare D1 database and run migrations
+- [x] Register when2refi.com on Cloudflare
+- [x] Initialize React + Vite + Tailwind project
+- [x] Deploy skeleton to Cloudflare Pages
+- [x] Set up Cloudflare Workers (TypeScript)
+- [x] Set up Cloudflare D1 database and run migrations
 - [ ] Set up Cloudflare R2
-- [ ] Integrate Clerk (Google, Facebook, email login)
+- [x] Integrate Clerk (Google, Facebook, email login)
 - [ ] Wire Clerk JWT to Workers API
 
 ---
