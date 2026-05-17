@@ -86,3 +86,19 @@ export type {
   TermShorteningDisplay,
   TermShorteningResult,
 } from './goal-solvers.js';
+
+export {
+  DEFAULT_OPERATING_EXPENSE_RATE,
+  STRUCTURE_VALUE_RATIO,
+  DEPRECIATION_LIFE_YEARS,
+  DSCR_CASH_FLOW_WARNING_THRESHOLD,
+  DSCR_LOAN_ELIGIBILITY_THRESHOLD,
+  computeIncomeMetrics,
+  computeDepreciation,
+} from './investment-metrics.js';
+export type {
+  IncomeMetricsContext,
+  IncomeMetrics,
+  DepreciationContext,
+  DepreciationMetrics,
+} from './investment-metrics.js';
