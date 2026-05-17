@@ -1,5 +1,5 @@
 # when2refi.com — Project Plan
-*Last updated: 2026-05-16*
+*Last updated: 2026-05-17*
 
 ## Phase 1: Licensing (Blocker for Everything Else)
 
@@ -34,12 +34,12 @@
 ## Phase 4: Decision Support Calculator (DSC)
 
 - [ ] Build left panel: current mortgage facts input form
-- [ ] Build amortization engine: derive equity, P&I by month, remaining balance
+- [x] Build amortization engine: derive equity, P&I by month, remaining balance
 - [ ] Build right panel: goal solver UI
-- [ ] Implement backwards calculation per goal type
-- [ ] Implement closing cost estimator
+- [x] Implement backwards calculation per goal type
+- [x] Implement closing cost estimator
 - [ ] Implement property-type aware behavior (primary vs. investment)
-- [ ] Implement full investment decision engine (NOI, cash flow, depreciation, ROW)
+- [x] Implement full investment decision engine (NOI, cash flow, depreciation, ROW)
 - [ ] DSC works anonymously with no account required
 
 ## Phase 4.5: Static Education Page
