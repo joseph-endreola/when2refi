@@ -10,6 +10,7 @@
  *   - closing costs (MATH.md §3)
  *   - solver (MATH.md §4)
  *   - goal solvers (MATH.md §5.1–§5.4)
+ *   - cash-out (MATH.md §5.5)
  *   - goals (MATH.md §5.x)
  *   - investment (MATH.md §6)
  *   - hold-sell (MATH.md §7)
@@ -102,3 +103,20 @@ export type {
   DepreciationContext,
   DepreciationMetrics,
 } from './investment-metrics.js';
+
+export {
+  MAX_LTV_PRIMARY,
+  MAX_LTV_INVESTMENT,
+  solveCashOut,
+} from './cash-out.js';
+export type {
+  CashOutInvestmentInputs,
+  CashOutContext,
+  CashOutParams,
+  CashOutLtvExceeded,
+  CashOutRowAnalysisBefore,
+  CashOutRowAnalysisAfter,
+  CashOutRowAnalysis,
+  CashOutRateCheck,
+  CashOutResult,
+} from './cash-out.js';
