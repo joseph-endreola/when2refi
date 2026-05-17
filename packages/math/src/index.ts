@@ -49,3 +49,15 @@ export type {
   Months,
   RemainingTerm,
 } from './amortization.js';
+
+export {
+  closingCostEstimate,
+  DEFAULT_CLOSING_COST_RATIO,
+} from './closing-costs.js';
+
+export {
+  solveForRate,
+} from './rate-solver.js';
+export type {
+  RateSolverResult,
+} from './rate-solver.js';
