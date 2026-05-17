@@ -1,0 +1,15 @@
+{
+  "name": "when2refi",
+  "private": true,
+  "version": "0.0.0",
+  "description": "when2refi.com monorepo",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "test:math": "npm --workspace @when2refi/math run test",
+    "typecheck:math": "npm --workspace @when2refi/math run typecheck"
+  }
+}
