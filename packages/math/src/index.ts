@@ -9,6 +9,7 @@
  *   - amortization (MATH.md §2)
  *   - closing costs (MATH.md §3)
  *   - solver (MATH.md §4)
+ *   - goal solvers (MATH.md §5.1–§5.4)
  *   - goals (MATH.md §5.x)
  *   - investment (MATH.md §6)
  *   - hold-sell (MATH.md §7)
@@ -61,3 +62,27 @@ export {
 export type {
   RateSolverResult,
 } from './rate-solver.js';
+
+export {
+  solvePaymentReduction,
+  solveBreakEven,
+  solveTotalInterestReduction,
+  solveTermShortening,
+} from './goal-solvers.js';
+export type {
+  RateTermRefiContext,
+  RateTermRefiDisplay,
+  PaymentReductionParams,
+  PaymentReductionDisplay,
+  PaymentReductionResult,
+  BreakEvenParams,
+  BreakEvenDisplay,
+  BreakEvenResult,
+  TotalInterestReductionParams,
+  TotalInterestReductionDisplay,
+  TotalInterestReductionResult,
+  TermShorteningContext,
+  TermShorteningParams,
+  TermShorteningDisplay,
+  TermShorteningResult,
+} from './goal-solvers.js';
