@@ -45,13 +45,17 @@ DSC state and it becomes the user's first property row.
 | nickname | TEXT | User-defined label. Nullable |
 | property_value_cents | INTEGER | |
 | mortgage_balance_cents | INTEGER | |
-| monthly_payment_cents | INTEGER | |
+| monthly_payment_cents | INTEGER | P&I only. Does not include taxes or insurance |
 | original_term_months | INTEGER | 360 = 30yr, 180 = 15yr |
 | loan_start_date | TEXT | YYYY-MM-DD |
 | interest_rate_bps | INTEGER | 6.75% = 675 |
 | mortgage_type | TEXT | FHA, VA, Conventional, DSCR, Other |
 | property_type | TEXT | primary, investment, multi_family |
 | taxes_insurance_monthly_cents | INTEGER | Nullable |
+| monthly_gross_rent_cents | INTEGER | Nullable. Investment / multi_family only. Required for NOI, cash flow, DSCR, ROW |
+| operating_expense_rate_bps | INTEGER | Nullable. Default 4000 (40%). User-adjustable |
+| purchase_price_cents | INTEGER | Nullable. Investment / multi_family only. Required for depreciation base and capital gains |
+| purchase_date | TEXT | Nullable. YYYY-MM-DD. Required for accumulated depreciation and holding period |
 | goal_notification_logic | TEXT | ANY or ALL -- applies to all goals on this property |
 | monitoring_enabled | INTEGER | 0 = off, 1 = active in cron engine |
 | created_at | TEXT | |
