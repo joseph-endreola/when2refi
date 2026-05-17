@@ -30,7 +30,6 @@
 // assumptions are UI state, not stored in D1.
 
 import type { Dollars, AnnualRate, MonthlyRate } from './units';
-import type { Months } from './amortization';
 import { balanceAtMonth } from './amortization.js';
 import { DEFAULT_OPERATING_EXPENSE_RATE } from './investment-metrics.js';
 
