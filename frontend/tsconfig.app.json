@@ -15,6 +15,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
+    /* Type safety — kept in sync with packages/math */
+    "strict": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedIndexedAccess": true,
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
