@@ -201,11 +201,16 @@ function parseOptionalDate(
  * defaulted to zero (the math layer applies its own defaults). Extras on a
  * primary residence are ignored entirely — never validated, never included.
  *
- * `today` is read from the system clock here (a parser boundary). The only
- * clock-dependent rule is "loan start / purchase date not in the future".
+ * `today` is passed in rather than read from the system clock (type-signature
+ * law #13: isolate non-determinism). The only clock-dependent rule is "loan
+ * start / purchase date not in the future"; the caller supplies the reference
+ * date so the function stays pure and reproducible.
  */
-export function parsePropertyFacts(form: FormState): ParseResult<PropertyFacts> {
-  const todayISO = new Date().toISOString().slice(0, 10);
+export function parsePropertyFacts(
+  form: FormState,
+  today: Date,
+): ParseResult<PropertyFacts> {
+  const todayISO = today.toISOString().slice(0, 10);
 
   const nickname = parseNickname(form.nickname);
   const propertyValue = parseRequiredMoney('propertyValue', form.propertyValue);

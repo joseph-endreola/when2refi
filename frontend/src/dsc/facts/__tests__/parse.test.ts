@@ -12,6 +12,10 @@ import { INITIAL_FORM_STATE } from '../formState';
 import type { FormState } from '../formState';
 import type { PropertyFacts } from '../types';
 
+// Fixed reference date passed to parsePropertyFacts — keeps the parser pure.
+// All generated dates fall well before it.
+const TODAY = new Date('2026-05-17T00:00:00.000Z');
+
 // ---------- Generators ----------
 
 const toISO = (d: Date): string => d.toISOString().slice(0, 10);
@@ -116,11 +120,14 @@ describe('parsePropertyFacts round-trip', () => {
   it('parse, reformat, parse again yields the first parse value', () => {
     fc.assert(
       fc.property(formStateArb, (form) => {
-        const first = parsePropertyFacts(form);
+        const first = parsePropertyFacts(form, TODAY);
         expect(first.ok).toBe(true);
         if (!first.ok) return;
 
-        const second = parsePropertyFacts(factsToFormState(first.value));
+        const second = parsePropertyFacts(
+          factsToFormState(first.value),
+          TODAY,
+        );
         expect(second.ok).toBe(true);
         if (!second.ok) return;
 
@@ -146,7 +153,7 @@ describe('parsePropertyFacts validation', () => {
   };
 
   it('rejects an empty form with errors for every required core field', () => {
-    const result = parsePropertyFacts(INITIAL_FORM_STATE);
+    const result = parsePropertyFacts(INITIAL_FORM_STATE, TODAY);
     expect(result.ok).toBe(false);
     if (result.ok) return;
     const fields = new Set(result.errors.map((e) => e.field));
@@ -165,7 +172,7 @@ describe('parsePropertyFacts validation', () => {
   });
 
   it('accepts a valid primary-residence form', () => {
-    const result = parsePropertyFacts(validForm);
+    const result = parsePropertyFacts(validForm, TODAY);
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.value.propertyType).toBe('primary');
@@ -173,27 +180,30 @@ describe('parsePropertyFacts validation', () => {
   });
 
   it('rejects a future loan start date', () => {
-    const result = parsePropertyFacts({
-      ...validForm,
-      loanStartDate: '2999-01-01',
-    });
+    const result = parsePropertyFacts(
+      { ...validForm, loanStartDate: '2999-01-01' },
+      TODAY,
+    );
     expect(result.ok).toBe(false);
     if (result.ok) return;
     expect(result.errors.some((e) => e.field === 'loanStartDate')).toBe(true);
   });
 
   it('rejects an interest rate at or above 20%', () => {
-    const result = parsePropertyFacts({ ...validForm, interestRate: '25' });
+    const result = parsePropertyFacts(
+      { ...validForm, interestRate: '25' },
+      TODAY,
+    );
     expect(result.ok).toBe(false);
     if (result.ok) return;
     expect(result.errors.some((e) => e.field === 'interestRate')).toBe(true);
   });
 
   it('rejects a non-integer term', () => {
-    const result = parsePropertyFacts({
-      ...validForm,
-      originalTermMonths: '360.5',
-    });
+    const result = parsePropertyFacts(
+      { ...validForm, originalTermMonths: '360.5' },
+      TODAY,
+    );
     expect(result.ok).toBe(false);
     if (result.ok) return;
     expect(result.errors.some((e) => e.field === 'originalTermMonths')).toBe(
@@ -202,11 +212,10 @@ describe('parsePropertyFacts validation', () => {
   });
 
   it('ignores investment-only fields on a primary residence', () => {
-    const result = parsePropertyFacts({
-      ...validForm,
-      monthlyGrossRent: '3000',
-      purchasePrice: '400000',
-    });
+    const result = parsePropertyFacts(
+      { ...validForm, monthlyGrossRent: '3000', purchasePrice: '400000' },
+      TODAY,
+    );
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect('monthlyGrossRent' in result.value).toBe(false);
@@ -214,12 +223,15 @@ describe('parsePropertyFacts validation', () => {
   });
 
   it('omits empty income fields rather than defaulting them to zero', () => {
-    const result = parsePropertyFacts({
-      ...validForm,
-      propertyType: 'investment',
-      monthlyGrossRent: '',
-      operatingExpenseRate: '',
-    });
+    const result = parsePropertyFacts(
+      {
+        ...validForm,
+        propertyType: 'investment',
+        monthlyGrossRent: '',
+        operatingExpenseRate: '',
+      },
+      TODAY,
+    );
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect('monthlyGrossRent' in result.value).toBe(false);
