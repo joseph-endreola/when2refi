@@ -14,7 +14,7 @@
  *   - tax optimization (MATH.md §5.6)
  *   - goals (MATH.md §5.x)
  *   - investment (MATH.md §6)
- *   - hold-sell (MATH.md §7)
+ *   - hold/sell analysis (MATH.md §7)
  *
  * Public surface: re-exports are explicit named exports; the public API is
  * curated, not wildcard-derived.
@@ -137,3 +137,27 @@ export type {
   InvestmentTaxContext,
   InvestmentTaxResult,
 } from './tax-optimization.js';
+
+export {
+  DEFAULT_APPRECIATION_RATE,
+  DEFAULT_RENT_GROWTH_RATE,
+  DEFAULT_AGENT_COMMISSION_RATE,
+  DEFAULT_SALE_CLOSING_COSTS_RATE,
+  DEFAULT_LONG_TERM_CAP_GAINS_RATE,
+  DEFAULT_DEPRECIATION_RECAPTURE_RATE,
+  DEFAULT_REINVESTMENT_RETURN_RATE,
+  computeSellScenario,
+  computeHoldScenario,
+  compareHoldVsSell,
+} from './hold-sell.js';
+export type {
+  HoldSellAssumptions,
+  SellScenarioContext,
+  SellScenarioResult,
+  HoldScenarioContext,
+  HoldYearProjection,
+  HoldScenarioResult,
+  HoldVsSellContext,
+  HoldVsSellYearComparison,
+  HoldVsSellResult,
+} from './hold-sell.js';
