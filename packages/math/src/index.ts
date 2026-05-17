@@ -11,6 +11,7 @@
  *   - solver (MATH.md §4)
  *   - goal solvers (MATH.md §5.1–§5.4)
  *   - cash-out (MATH.md §5.5)
+ *   - tax optimization (MATH.md §5.6)
  *   - goals (MATH.md §5.x)
  *   - investment (MATH.md §6)
  *   - hold-sell (MATH.md §7)
@@ -120,3 +121,19 @@ export type {
   CashOutRateCheck,
   CashOutResult,
 } from './cash-out.js';
+
+export {
+  TAX_DISCLAIMER,
+  DEDUCTIBLE_BALANCE_CAP,
+  DEPRECIATION_RECAPTURE_NOTE,
+  STANDARD_DEDUCTION_2024,
+  computePrimaryResidenceTax,
+  computeInvestmentTax,
+} from './tax-optimization.js';
+export type {
+  PrimaryResidenceTaxContext,
+  PrimaryResidenceTaxResult,
+  InvestmentTaxPurchaseInfo,
+  InvestmentTaxContext,
+  InvestmentTaxResult,
+} from './tax-optimization.js';
